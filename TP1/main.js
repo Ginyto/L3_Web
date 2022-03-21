@@ -17,6 +17,39 @@ const jarvis = {
 
     },
 
+    empty() {
+        const tab = document.getElementsByClassName("tab")
+
+        const champs = document.getElementsByClassName("champs")
+
+        const nom = champs.item(0).children.item(1).value
+
+        const prenom = champs.item(1).children.item(1).value
+
+        const mail = champs.item(2).children.item(1).value
+
+        const role = champs.item(3).children.item(1).value
+
+        if ((nom && champs && prenom && mail && role) != "") {
+            console.log("ya du text")
+            return true
+        }
+        else {
+            console.log("form incomplete")
+            return false
+        }
+    },
+
+    erased_form() {
+        const champs = document.getElementsByClassName("champs")
+
+        for (let index = 0; index < 3; index++) {
+            champs.item(index).children.item(1).value = ""
+        }
+
+        
+
+    },
 
     create_cell() {
 
@@ -66,7 +99,13 @@ const jarvis = {
     
     add() {
         console.log("J'ajoute une personne")
-        this.create_cell()
+        if (this.empty()) {
+            this.create_cell()
+            this.erased_form()
+        }
+        else {
+            alert("Vous devez remplir tout le formulaire")
+        }
     },
 
     erased() {
