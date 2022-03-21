@@ -45,11 +45,11 @@
             <div class="zone_button">
 
                 <div class="button">
-                    <button type="submit" class="ton">Ajouter</button>
+                    <button type="submit" class="ton" onclick="jarvis.add()">Ajouter</button>
                 </div>
                 
                 <div class="button">
-                    <button type="reset" class="ton">Tout supprimer</button>
+                    <button type="reset" class="ton" onclick="jarvis.erased()">Tout supprimer</button>
                 </div>
 
             </div>
@@ -60,6 +60,18 @@
     </header>
 
     <main class="main">
+        
+        <table class="tab">
+
+            <tr class="ligne">
+                <td class="col" id="prenom">Prénom</td>
+                <td class="col" id="nom">Nom</td>
+                <td class="col" id="email">Email</td>
+                <td class="col" id="role">Role</td>
+            </tr>
+            
+        </table>
+        
     </main>
 
 

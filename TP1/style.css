@@ -113,7 +113,40 @@
 .main{
     display: flex;
 
+    margin-top: 5vh;
+
+    padding: 1vh;
+
     background-color: yellow;
+
+    justify-content: center;
+
+    overflow-y: auto;
+
+    height: 80vh;
+}
+
+.tab{
+    background-color: red;
+    max-width: 1000px;
+    border-radius: 3%;
+
+    height: 10vh;
+}
+
+.tab_titre{
+    border-color: cornflowerblue;
+}
+
+
+.col{
+    padding: 1vh;
+    
+    min-width: fit-content;
+
+    width: 100vh;
+
+    border-radius: 7%;
 }
 
 
