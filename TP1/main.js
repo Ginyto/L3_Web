@@ -17,11 +17,23 @@ const jarvis = {
 
     },
 
+
     create_cell() {
 
         const tab = document.getElementsByClassName("tab")
 
-        console.log(tab)
+        const champs = document.getElementsByClassName("champs")
+
+        const nom = champs.item(0).children.item(1).value
+
+        const prenom = champs.item(1).children.item(1).value
+
+        const mail = champs.item(2).children.item(1).value
+
+        const role = champs.item(3).children.item(1).value
+
+
+        console.log(champs.item(0).children.item(1).value)
 
         const ligne = document.createElement('tr')
 
@@ -32,7 +44,18 @@ const jarvis = {
 
             element.className = 'col'
 
-            element.innerHTML = index
+            if (index === 0) {
+                element.innerHTML = nom
+            }
+            else if (index === 1) {
+                element.innerHTML = prenom
+            }
+            else if (index === 2) {
+                element.innerHTML = mail
+            }
+            else if (index === 3) {
+                element.innerHTML = role
+            }
 
             ligne.appendChild(element)
         }
