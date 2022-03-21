@@ -2,8 +2,119 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+
+    background-color: grey;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header{
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .logo{
-    width: 25vh;
+    width: 15vh;
+    border-radius: 50%;
+    box-shadow: 1vh 1vh 2vh red;
+
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
+
+.formulaire{
+    background-color:white;
+
+    max-width: 1000px;
+
+    width: 100%;
+
+    border-radius: 3%;
+    padding: 1vh;
+
+    box-shadow: 1vh 1vh 2vh red;
+}
+
+.zone_button{
+    display: flex;
+    background-color: white;
+    /* background-color: aquamarine; */
+
+    justify-content: space-between;
+
+    margin-top: 1vh;
+}
+
+.button{
+    background-color: white;
+
+    border-radius: 2%;
+
+    border-bottom:red 1vh;
+}
+
+.ton{
+    background-color: rgb(223, 219, 219);
+
+    padding: 1vh;
+
+    border: white;
+
+    border-radius: 5%;
+
+    text-transform: uppercase;
+
+}
+
+.ton:hover{
+    background-color: grey;
+
+    border: white;
+
+    border-radius: 2%;
+
+}
+
+
+.champs{
+    background-color: white;
+    /* background-color: aqua; */
+
+    display: flex;
+
+    align-items: center;
+}
+
+.label{
+    background-color: white;
+}
+
+.input{
+    background-color: white;
+    margin: 1vh;
+    border-radius: 3%;
+
+    width: 100%;
+    
+    border: white;
+
+    border-bottom: 0.1vh solid grey;
+
+    border-top: 0.1vh solid white;
+
+    caret-color: red;
+}
+
+/****main***/
+
+.main{
+    display: flex;
+
+    background-color: yellow;
+}
+
+
+
