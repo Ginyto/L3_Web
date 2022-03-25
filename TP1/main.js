@@ -1,11 +1,25 @@
 const jarvis = {
 
-    chronos() { 
+    backflip() {
+        const cible = document.querySelector('.formulaire');
+
+        cible.classList.toggle('rotaup');
+    },
+
+    chronos_add() { 
         
         var harbourg = 10
+        const cible = document.querySelector('.ton')
+        cible.classList.toggle('desactive')
             
         const tic_tac = setInterval(() => {
             console.log(`${harbourg} secondes`)
+            cible.innerHTML = `${harbourg} secondes`
+            
+            cible.onclick = function () { 
+                console.log('fonction désactivée')
+            }
+
             harbourg--
 
             if (harbourg == -1) {
@@ -15,6 +29,13 @@ const jarvis = {
                     clearInterval(tic_tac)
 
                     console.log('Temps écoulé !')
+                    cible.innerHTML = 'Ajouter'
+                    cible.classList.toggle('desactive')
+                    
+                    cible.onclick = function () { 
+                        jarvis.add()
+                    }
+                    
 
                 } catch (error) {
                     console.log(error)
@@ -126,6 +147,7 @@ const jarvis = {
     add() {
         console.log("J'ajoute une personne")
         if (this.empty()) {
+            this.chronos_add()
             this.create_cell()
             this.erased_form()
         }
@@ -142,4 +164,4 @@ const jarvis = {
 }
 
 
-jarvis.chronos()
+jarvis.chronos_add()

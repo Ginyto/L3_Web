@@ -78,6 +78,18 @@
 
 }
 
+.desactive{
+    background-color: red;
+
+    padding: 1vh;
+
+    border: white;
+
+    border-radius: 5%;
+
+    text-transform: uppercase;
+}
+
 
 .champs{
     background-color: white;
@@ -149,5 +161,15 @@
     border-radius: 7%;
 }
 
+
+.rotaup{
+    transition: transform 3s;
+    transform: rotate(180deg);
+}
+
+.rotadown{
+    transition: transform 3s;
+    transform: rotate(0deg);
+}
 
 
