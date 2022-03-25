@@ -1,5 +1,31 @@
 const jarvis = {
 
+    chronos() { 
+        
+        var harbourg = 10
+            
+        const tic_tac = setInterval(() => {
+            console.log(`${harbourg} secondes`)
+            harbourg--
+
+            if (harbourg == -1) {
+
+                
+                try {
+                    clearInterval(tic_tac)
+
+                    console.log('Temps écoulé !')
+
+                } catch (error) {
+                    console.log(error)
+                    console.log('clearInterval() failed')
+                }
+
+            }
+
+        }, 1000);
+    },
+
     delete_all() {
         const tab = document.getElementsByClassName("tab")
 
@@ -114,3 +140,6 @@ const jarvis = {
     }
 
 }
+
+
+jarvis.chronos()
