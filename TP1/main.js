@@ -1,9 +1,22 @@
 const jarvis = {
 
+    godmode: false,
+
+
+    pioupiou() {
+        document.body.style.cursor = "crosshair";
+
+        this.godmode = true;
+
+
+    },
+
     backflip() {
         const cible = document.querySelector('.formulaire');
 
         cible.classList.toggle('rotaup');
+
+        console.log(cible);
     },
 
     chronos_add() { 
@@ -91,6 +104,10 @@ const jarvis = {
         const champs = document.getElementsByClassName("champs")
 
         for (let index = 0; index < 3; index++) {
+
+            if (champs.item(index).children.item(1).value == "GTA") {
+                this.pioupiou()
+            }
             champs.item(index).children.item(1).value = ""
         }
 
