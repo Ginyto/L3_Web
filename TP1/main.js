@@ -1,6 +1,71 @@
 const jarvis = {
 
-    godmode: false,
+    standby() {
+        this.chronos_add()
+        this.enter()
+        this.spam()
+
+    },
+
+    spam() {
+        var harbourg = 2;
+        var clic = 0
+
+        const tic_tac = setInterval(() => {
+            
+
+            //console.log(harbourg)
+
+            harbourg--
+
+            if (harbourg >= 0) {
+                window.addEventListener("mousedown", () => {
+                    clic = 1;
+
+                    console.log("nombre de click => " + clic)
+
+
+                })
+            }
+
+            
+
+            if (harbourg == -1) {
+
+                harbourg = 2;
+
+                console.log("reset")
+
+                clic = 0;
+
+            }
+
+        }, 1000);
+    },
+
+    enter() { 
+        window.addEventListener('keydown', (e) => { 
+            if (e.key == 'Enter') {
+                this.add()
+            }
+        }, false);
+    },
+
+
+    aim() {
+
+        window.addEventListener('click', (clic) => {
+
+            if (clic.target) {
+
+                const cible = clic.target;
+
+                console.log(cible);
+
+                cible.classList.toggle('piou');
+            }
+        });
+    },
 
 
     pioupiou() {
@@ -8,6 +73,7 @@ const jarvis = {
 
         this.godmode = true;
 
+        this.aim()
 
     },
 
@@ -26,7 +92,7 @@ const jarvis = {
         cible.classList.toggle('desactive')
             
         const tic_tac = setInterval(() => {
-            console.log(`${harbourg} secondes`)
+            //console.log(`${harbourg} secondes`)
             cible.innerHTML = `${harbourg} secondes`
             
             cible.onclick = function () { 
@@ -41,7 +107,7 @@ const jarvis = {
                 try {
                     clearInterval(tic_tac)
 
-                    console.log('Temps écoulé !')
+                    //console.log('Temps écoulé !')
                     cible.innerHTML = 'Ajouter'
                     cible.classList.toggle('desactive')
                     
@@ -180,5 +246,4 @@ const jarvis = {
 
 }
 
-
-jarvis.chronos_add()
+jarvis.standby()
