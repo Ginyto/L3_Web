@@ -1,5 +1,7 @@
 const jarvis = {
 
+    click: 0,
+
     standby() {
         this.chronos_add()
         this.enter()
@@ -7,9 +9,14 @@ const jarvis = {
 
     },
 
+    spamclick() { 
+        this.click++
+        //console.log("nbr de clic", this.click)
+
+    },
+
     spam() {
         var harbourg = 2;
-        var clic = 0
 
         const tic_tac = setInterval(() => {
             
@@ -18,27 +25,30 @@ const jarvis = {
 
             harbourg--
 
-            if (harbourg >= 0) {
-                window.addEventListener("mousedown", () => {
-                    clic = 1;
+            if (this.click > 4) {
+                //console.log("arrete ça tout de suite")
 
-                    console.log("nombre de click => " + clic)
+                const form = document.querySelector(".formulaire")
 
+                form.classList.toggle("piou")
 
-                })
+                const punition = setTimeout(() => {
+                    form.classList.toggle("piou")
+                }, 5000)
+
             }
 
-            
 
             if (harbourg == -1) {
 
                 harbourg = 2;
 
-                console.log("reset")
+                //console.log("reset")
 
-                clic = 0;
+                this.click = 0;
 
             }
+
 
         }, 1000);
     },
@@ -60,7 +70,7 @@ const jarvis = {
 
                 const cible = clic.target;
 
-                console.log(cible);
+                //console.log(cible);
 
                 cible.classList.toggle('piou');
             }
@@ -82,7 +92,7 @@ const jarvis = {
 
         cible.classList.toggle('rotaup');
 
-        console.log(cible);
+        //console.log(cible);
     },
 
     chronos_add() { 
@@ -157,11 +167,11 @@ const jarvis = {
         const role = champs.item(3).children.item(1).value
 
         if ((nom && champs && prenom && mail && role) != "") {
-            console.log("ya du text")
+            //console.log("ya du text")
             return true
         }
         else {
-            console.log("form incomplete")
+           // console.log("form incomplete")
             return false
         }
     },
@@ -196,7 +206,7 @@ const jarvis = {
         const role = champs.item(3).children.item(1).value
 
 
-        console.log(champs.item(0).children.item(1).value)
+        //console.log(champs.item(0).children.item(1).value)
 
         const ligne = document.createElement('tr')
 
@@ -228,7 +238,7 @@ const jarvis = {
     },
     
     add() {
-        console.log("J'ajoute une personne")
+        //console.log("J'ajoute une personne")
         if (this.empty()) {
             this.chronos_add()
             this.create_cell()
@@ -240,7 +250,7 @@ const jarvis = {
     },
 
     erased() {
-        console.log("Je supprime tout")
+        //console.log("Je supprime tout")
         this.delete_all()
     }
 
