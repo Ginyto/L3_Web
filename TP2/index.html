@@ -39,8 +39,18 @@
             <h1> Bonjour, nous sommes dans le groupe de {{groupe}} </h1>
             <h1> Notre âge est {{age}} ans</h1>
 
-            <p> nous sommes en {{annee}} </p>
+            <p> nous sommes en {{annee}} </p> 
 
+        </div>
+
+        <div id="vm2">
+
+            <h1 :class="{ BN : isWhite }"> Tu peux inverser ma couleur, clique sur le bouton -> couleur :
+                <p v-if="isWhite">Blanc</p>
+                <p v-else="!isWhite" >Noir</p>
+            </h1>
+
+            <button @click="inverser">Changer la couleur</button>
         </div>
 
     </div>
@@ -55,8 +65,6 @@
 
     <script src="/TP2/main.js"></script>
     <script src="/TP2/jarvis.js"></script>
-
-    <script> const mountedApp = app.mount('#app') </script>
 
 
 </body>

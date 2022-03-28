@@ -20,12 +20,20 @@
 
 
 .bodyzone{
-    /* background-color:cornflowerblue; */
+    /* background-color:cornflowerblue;  */
 
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
     width: 100%;
     height: 50vh;
+}
+
+.BN{
+    background-color: black;
+    color: white;
 }
 
 .footerzone{
