@@ -36,7 +36,9 @@
 
     <div class="bodyzone">
 
-        bodyzone flex
+        <div id="app">
+            <h1> {{ message }} </h1>
+        </div>
 
     </div>
 
@@ -50,8 +52,11 @@
 
 
     </footer>
+
+
     <script src="/TP2/main.js"></script>
     <script src="/TP2/jarvis.js"></script>
+    <script>const mountedApp = app.mount('#app') </script>
 
 
 </body>
