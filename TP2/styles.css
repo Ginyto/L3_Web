@@ -1,0 +1,41 @@
+*, ::before, ::after{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.dark_mode{
+    color: whitesmoke;
+    background-color: black;
+}
+
+.headzone{
+    display: flex;
+    
+    background-color: red;
+
+    width: 100%;
+    height: 25vh;
+}
+
+
+.bodyzone{
+    background-color:cornflowerblue;
+
+    display: flex;
+
+    width: 100%;
+    height: 50vh;
+}
+
+.footerzone{
+    display: flex;
+    
+    background-color: plum;
+
+    width: 100%;
+    height: 25vh;
+}
+
+
+
