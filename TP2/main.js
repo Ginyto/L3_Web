@@ -2,8 +2,8 @@ const app = Vue.createApp({
 
     data() {
         return {
-            groupe: 'Annichiarico Gianlucca',
-            age: '22 ans',
+            groupe: '10',
+            age: '22',
             annee: '2022'
         }
     },
