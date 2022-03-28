@@ -46,11 +46,65 @@
         <div id="vm2">
 
             <h1 :class="{ BN : isWhite }"> Tu peux inverser ma couleur, clique sur le bouton -> couleur :
-                <p v-if="isWhite">Blanc</p>
-                <p v-else="!isWhite" >Noir</p>
+                <p v-if="isWhite"> {{myText}} </p>
+                <p v-else="!isWhite" > {{myText}} </p>
             </h1>
 
             <button @click="inverser">Changer la couleur</button>
+        </div>
+
+        <div id="tableau">
+
+            <table>
+
+                <tr>
+                    <th>Id étudiant</th>
+                    <th>Nom</th>
+                    <th>Note</th>
+                    <th>Groupe</th>
+                </tr>
+
+                <tr v-for="(stud, index) in tab">
+                    <td> {{ index }} </td>
+                    <td> {{ stud.nom }} </td>
+                    <td> {{ stud.note }} </td>
+                    <td> {{ stud.groupe }} </td>
+                </tr>
+
+                <tr>
+                    <th>Id étudiant</th>
+                    <th>Nom</th>
+                    <th>Note</th>
+                    <th>Groupe</th>
+                </tr>
+
+
+                <tr v-for="(stud, index) in tab" v-show="quelgroupe(index)">
+
+                    <td> {{ index }} </td>
+                    <td> {{ stud.nom }} </td>
+                    <td> {{ stud.note }} </td>
+                    <td> {{ stud.groupe }} </td>
+                    
+                </tr>
+
+                <tr>
+                    <th>Id étudiant</th>
+                    <th>Nom</th>
+                    <th>Note</th>
+                    <th>Groupe</th>
+                </tr>
+
+                <tr v-for="(stud, index) in tab" v-show="!quelgroupe(index)">
+                    <td> {{ index }} </td>
+                    <td> {{ stud.nom }} </td>
+                    <td> {{ stud.note }} </td>
+                    <td> {{ stud.groupe }} </td>
+                </tr>
+
+            </table>
+
+
         </div>
 
     </div>
