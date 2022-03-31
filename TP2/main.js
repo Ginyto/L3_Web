@@ -78,7 +78,9 @@ const liste = Vue.createApp({
     data() {
         return {
             cours: ['Algorithmique', 'Structures de données', 'Programmation Web', 'Programmation Web Avancé', 'Base de données'],
-            selected : ''
+            selected: '',
+            newword: '',
+            something: ''
 
         }
     },
