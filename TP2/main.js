@@ -71,3 +71,32 @@ const tableau = Vue.createApp({
 })
 
 tableau.mount('#tableau')
+
+
+const liste = Vue.createApp({
+
+    data() {
+        return {
+            cours: ['Algorithmique', 'Structures de données', 'Programmation Web', 'Programmation Web Avancé', 'Base de données'],
+            selected : ''
+
+        }
+    },
+
+    methods: {
+
+        ajouter(mot) {
+            this.cours.push(mot)
+            console.log(mot)
+            return ""
+        },
+
+        modifier(selected) {
+
+            console.log(selected)
+        }
+
+    }
+})
+
+liste.mount('#liste')

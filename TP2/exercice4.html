@@ -33,7 +33,31 @@
 
 
     <div class="bodyzone">
+        <div id="liste">
+            <ul>
+                <li v-for="(cour, index) in cours">{{cour}}</li>
+            </ul>
 
+            <br>
+
+            <input type="text" v-model="something" placeholder="Entrez un cours"> 
+
+            <button @click="ajouter(something)"> Ajouter </button>
+
+            <select v-model="selected">
+
+                <option disabled value="">Cours</option>
+
+                <option v-for="(cour, index) in cours"> {{cour}} </option>
+
+            </select>
+
+            <textarea rows="1"> {{selected}} </textarea>
+
+            <button @click="modifier(selected, index)"> modifier </button>
+
+
+        </div>
     </div>
 
 
