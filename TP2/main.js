@@ -9,7 +9,7 @@ const app = Vue.createApp({
     },
 })
 
-app.mount('#app')
+//app.mount('#app')
 
 
 const vm2 = Vue.createApp({
@@ -41,7 +41,7 @@ const vm2 = Vue.createApp({
     }
 })
 
-vm2.mount('#vm2')
+//vm2.mount('#vm2')
 
 
 
@@ -70,7 +70,7 @@ const tableau = Vue.createApp({
     
 })
 
-tableau.mount('#tableau')
+//tableau.mount('#tableau')
 
 
 const liste = Vue.createApp({
@@ -80,7 +80,8 @@ const liste = Vue.createApp({
             cours: ['Algorithmique', 'Structures de données', 'Programmation Web', 'Programmation Web Avancé', 'Base de données'],
             selected: '',
             newword: '',
-            something: ''
+            something: '',
+            thing: '',
 
         }
     },
@@ -88,17 +89,25 @@ const liste = Vue.createApp({
     methods: {
 
         ajouter(mot) {
-            this.cours.push(mot)
-            console.log(mot)
-            return ""
+            if (mot != '') {
+                this.cours.push(mot)
+            }
+        },
+    
+
+        modifier(selected, index) {
+
+            this.cours[index] = selected
+
+            console.log(selected, index)
         },
 
-        modifier(selected) {
-
-            console.log(selected)
+        supprimer(index) {
+            this.cours[index] = ''
         }
 
     }
+
 })
 
 liste.mount('#liste')

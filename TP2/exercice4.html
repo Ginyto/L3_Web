@@ -35,7 +35,9 @@
     <div class="bodyzone">
         <div id="liste">
             <ul>
-                <li v-for="(cour, index) in cours">{{cour}}</li>
+                <li v-for="(cour, index) in cours">
+                    <button @click="supprimer(index)">X</button>{{cour}}
+                </li>
             </ul>
 
             <br>
@@ -48,13 +50,13 @@
 
                 <option disabled value="">Cours</option>
 
-                <option v-for="(cour, index) in cours"> {{cour}} </option>
+                <option v-for="(cour, index) in cours" v-bind:value="{i : index, ele : cour}"> {{cour}} </option>
 
             </select>
 
-            <textarea > {{selected}} </textarea>
+            <textarea v-model="selected.ele"></textarea>
 
-            <button @click="modifier(newword)"> modifier </button>
+            <button @click="modifier(selected.ele, selected.i)"> modifier </button>
 
 
         </div>
