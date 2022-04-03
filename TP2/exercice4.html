@@ -34,31 +34,7 @@
 
     <div class="bodyzone">
         <div id="liste">
-            <ul>
-                <li v-for="(cour, index) in cours">
-                    <button @click="supprimer(index)">X</button>{{cour}}
-                </li>
-            </ul>
-
-            <br>
-
-            <input type="text" v-model="something" placeholder="Entrez un cours"> 
-
-            <button @click="ajouter(something)"> Ajouter </button>
-
-            <select v-model="selected">
-
-                <option disabled value="">Cours</option>
-
-                <option v-for="(cour, index) in cours" v-bind:value="{i : index, ele : cour}"> {{cour}} </option>
-
-            </select>
-
-            <textarea v-model="selected.ele"></textarea>
-
-            <button @click="modifier(selected.ele, selected.i)"> modifier </button>
-
-
+            <compo-liste></compo-liste>
         </div>
     </div>
 
@@ -71,6 +47,7 @@
 
 
     <script src="/TP2/main.js"></script>
+    <script src="/TP2/liste.js"></script>
 
 
 </body>

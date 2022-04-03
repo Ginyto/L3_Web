@@ -77,6 +77,51 @@ const liste = Vue.createApp({
 
     data() {
         return {
+
+        }
+    },
+
+    methods: {
+
+        
+    }
+
+})
+
+liste.component('compo-liste', {
+
+    template:
+    /*html*/
+    `<div id="liste">
+            <ul>
+                <li v-for="(cour, index) in cours">
+                    <button @click="supprimer(index)">X</button>{{cour}}
+                </li>
+            </ul>
+
+            <br>
+
+            <input type="text" v-model="something" placeholder="Entrez un cours"> 
+
+            <button @click="ajouter(something)"> Ajouter </button>
+
+            <select v-model="selected">
+
+                <option disabled value="">Cours</option>
+
+                <option v-for="(cour, index) in cours" v-bind:value="{i : index, ele : cour}"> {{cour}} </option>
+
+            </select>
+
+            <textarea v-model="selected.ele"></textarea>
+
+            <button @click="modifier(selected.ele, selected.i)"> modifier </button>
+
+
+        </div>`,
+    
+    data() {
+        return {
             cours: ['Algorithmique', 'Structures de données', 'Programmation Web', 'Programmation Web Avancé', 'Base de données'],
             selected: '',
             newword: '',
@@ -107,6 +152,7 @@ const liste = Vue.createApp({
         }
 
     }
+
 
 })
 
