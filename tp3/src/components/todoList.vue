@@ -1,9 +1,10 @@
 <template>
 <div class="container">
+    <h1>Todo List </h1>
     <div class="container">
         <form>
         <div class="form-group">
-            <input v-model="title" type="text" class="form-control" name="title" id="title" placeholder="Title">
+            <input v-model="title" type="text" class="form-control" name="title" id="title" placeholder="Titre">
         </div>
         <div class="form-group">
             <input v-model="desc" type="text" class="form-control" name="desc" id="desc" placeholder="Description">
