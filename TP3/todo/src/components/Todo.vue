@@ -1,3 +1,4 @@
+/* eslint-disable vue/require-v-for-key */
 <template>
 
     <div id="main">
@@ -17,14 +18,36 @@
             </div>
 
 
-            Tache déjà faite ? <input type="checkbox" id="check">
+            Tache déjà faite ? <input type="checkbox" id="check" v-bind="echo">
             <button type='button' id="add_button" @click="addTache(top,bottom)">Ajouter la tâche</button>
 
         </div>
 
         <div id="journal">
                 <h1>Quêtes</h1>
-                <div>ceci est un test voici le titre {{nom}} et la description {{aim}}</div>
+                
+                <div class="sub_zone">
+                    <div class="subtitle">
+                        <div>#</div>
+                        <div>Titre</div>
+                        <div>Description</div>
+                        <div>Etat</div>
+                    </div>
+                </div>
+
+                <div class="sub_zone" v-for = "(titre, index) in nom" :key="titre">
+
+                    <div class="subtitle">
+
+                        <div>{{index + 1}}</div>
+                        <div>{{titre}}</div>
+                        <div>{{aim[index]}}</div>
+                        <div @click="fini(index)">{{coche[index]}}</div>
+
+                    </div>
+
+
+                </div>
         </div>
 
     </div>
@@ -40,6 +63,7 @@
             return {
                 nom : [],
                 aim : [],
+                coche : []
             }
         },
 
@@ -52,16 +76,27 @@
                 this.top = "";
                 this.bottom = "";
 
-            },
-
-            checkTache() {
                 if(document.getElementById("check").checked == true) {
-                    document.getElementById("check").checked = false;
+                    this.coche.push('✅');
                 }
                 else {
-                    document.getElementById("check").checked = true;
+                    this.coche.push('❌');
+                }
+
+            },
+
+            fini(index) {
+
+                if(this.coche[index] == '✅') {
+                    this.coche[index] = '❌'
+                }
+
+                else {
+                    this.coche[index] = '✅'
                 }
             }
+            
+
         },
 
         computed: {
@@ -112,6 +147,18 @@
 
 #journal{
     background-color: #5bd0ff;
+}
+
+.sub_zone{
+    display: flex;
+    justify-content: center;
+}
+
+.subtitle{
+    background-color: #e89eff;
+    display: flex;
+    justify-content: space-around;
+    width: 100vh;
 }
 
 </style>
