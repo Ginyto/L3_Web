@@ -19,7 +19,7 @@
 
         data() {
             return {
-                message: 'Hello Vue!',
+                message: 'Exercice 1',
             }
         },
 
