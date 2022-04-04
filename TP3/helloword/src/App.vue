@@ -1,24 +1,28 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld></HelloWorld>
   <Exercice1></Exercice1>
   <Exercice2></Exercice2>
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld.vue'
+import Exercice1 from './components/Exercice1.vue'
+import Exercice2 from './components/Exercice2.vue'
 
-  import Exercice1 from './components/Exercice1.vue'
-  import Exercice2 from './components/Exercice2.vue'
 
-  export default {
+export default {
 
-    name: 'App',
+  name: 'App',
 
-    components: {
-      Exercice1,
-      Exercice2
-    }
-    
+  components: {
+    HelloWorld,
+    Exercice1,
+    Exercice2,
+
   }
+
+}
 
 </script>
 
