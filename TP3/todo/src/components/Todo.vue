@@ -1,4 +1,3 @@
-/* eslint-disable vue/require-v-for-key */
 <template>
 
     <div id="main">
@@ -7,7 +6,10 @@
         <div id="todo">
 
             <div id="sup">
-                <div>Nom de la tache</div>
+                <div id="ele">
+                    Ajouter un élément
+                </div>
+                
                 <input type="text" class="saisie" id="titre_tache" placeholder="tache" v-model="top">
             </div>
 
@@ -17,14 +19,21 @@
                 <textarea v-model="bottom" type="text" class="saisie" id="description" placeholder="Description de votre tache"></textarea>
             </div>
 
+            <div id="bot_zone">
+                <div id="bot">
 
-            Tache déjà faite ? <input type="checkbox" id="check" v-bind="echo">
-            <button type='button' id="add_button" @click="addTache(top,bottom)">Ajouter la tâche</button>
+                    <div>Tache déjà faite ?
+                        <input type="checkbox" id="check" v-bind="echo">
+                    </div>
+
+                    <button type='button' id="add_button" @click="addTache(top,bottom)">Ajouter</button>
+                </div>
+            </div>
 
         </div>
 
         <div id="journal">
-                <h1>Quêtes</h1>
+                <h1> ✅ : {{fait}}  Quêtes  ❌ : {{pasfait}}</h1>
                 
                 <div class="sub_zone">
                     <div class="subtitle">
@@ -70,18 +79,29 @@
         methods: {
 
             addTache(titre, description) {
-                this.nom.push(titre);
-                this.aim.push(description);
 
-                this.top = "";
-                this.bottom = "";
+                if(titre != undefined || description != undefined) {
+                    console.log(titre);
+                    console.log(description);
 
-                if(document.getElementById("check").checked == true) {
-                    this.coche.push('✅');
+                    this.nom.push(titre);
+                    this.aim.push(description);
+
+                    this.top = "";
+                    this.bottom = "";
+
+                    if(document.getElementById("check").checked == true) {
+                        this.coche.push('✅');
+                    }
+                    else {
+                        this.coche.push('❌');
+                    }
                 }
+
                 else {
-                    this.coche.push('❌');
+                    alert("Veuillez remplir tous les champs");
                 }
+
 
             },
 
@@ -100,7 +120,29 @@
         },
 
         computed: {
+            fait(){
+                var x = 0
 
+                for(var i = 0; i < this.coche.length; i++) {
+                    if(this.coche[i] == '✅') {
+                        x++
+                    }
+                }
+
+                return x
+            },
+
+            pasfait(){
+                var x = 0
+
+                for(var i = 0; i < this.coche.length; i++) {
+                    if(this.coche[i] == '❌') {
+                        x++
+                    }
+                }
+
+                return x
+            }
         },
     }
 
@@ -109,14 +151,6 @@
 
 <style lang="css" scoped>
 
-#main{
-    background-color: #e89eff;
-}
-
-#todo{
-    background-color: #ffd6a9;
-
-}
 
 #sup{
     margin-top: 2vh;
@@ -129,6 +163,9 @@
 .saisie{
     border-radius: 3%;
     border: none;
+
+    border-left: solid 0.5vh rgb(24, 114, 218);
+    border-bottom: solid 0.2vh rgb(24, 114, 218);
 }
 
 #titre_tache{
@@ -143,11 +180,23 @@
 
 #add_button{
     width: 20vh;
+    border: none;
+    background-color: white;
+    border-bottom: solid 0.2vh rgb(24, 114, 218);
+    align-self: center;
 }
 
-#journal{
-    background-color: #5bd0ff;
+#ele{
+    width: 30vh;
+    border: none;
+    background-color: white;
+    border-bottom: solid 0.2vh rgb(24, 114, 218);
+    margin-left: 71vh;
+    margin-bottom: 3vh;
+
+    display: flex;
 }
+
 
 .sub_zone{
     display: flex;
@@ -155,10 +204,33 @@
 }
 
 .subtitle{
-    background-color: #e89eff;
+    background-color: #f2f2f2;
     display: flex;
     justify-content: space-around;
     width: 100vh;
+
+    border-bottom: solid 0.05vh black;
 }
+
+#bot_zone{
+    display: flex;
+    justify-content: center;
+}
+
+#bot{
+    /* background-color: rgb(255, 0, 191); */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 30vh;
+    height: 10vh;
+}
+
+
+
+
+
+
 
 </style>
