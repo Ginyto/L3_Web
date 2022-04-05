@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <router-link to="/">Accueil</router-link> |
-    <router-link to="/todo-list">Todo List</router-link>
+    <router-link to="/todo-list">Todo List</router-link> |
+    <router-link to="/student-list">Liste des étudiants</router-link>
   </div>
   <div class="container mt-5">
     <router-view />

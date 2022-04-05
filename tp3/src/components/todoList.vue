@@ -73,7 +73,6 @@ export default {
             this.title = '';
             this.desc = '';
             document.getElementById("checkbox").checked = false;
-            console.log(this.tasks)
         },
         completedTask(task) {
             task.completed = !task.completed   
