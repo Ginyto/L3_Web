@@ -53,7 +53,6 @@ export default {
     },
     methods: {
         addStudent() {
-            console.log(this.group)
             if(!this.lname || !this.grade || !this.group.match('A|B')) {
                 alert("Please fill all the fields")
                 return
