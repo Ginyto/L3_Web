@@ -191,7 +191,7 @@
     border: none;
     background-color: white;
     border-bottom: solid 0.2vh rgb(24, 114, 218);
-    margin-left: 71vh;
+    margin-left: 80vh;
     margin-bottom: 3vh;
 
     display: flex;

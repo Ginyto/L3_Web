@@ -38,7 +38,4 @@
 
 <style lang="css" scoped>
 
-#titre{
-    /* background-color: #a9ff38; */
-}
 </style>
