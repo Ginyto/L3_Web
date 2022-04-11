@@ -34,7 +34,7 @@ router.use((req, res, next) => {
  * Cette route doit retourner le panier de l'utilisateur, grâce à req.session
  */
 router.get('/panier', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+  res.status(200).json(req.session.panier)
 })
 
 /*
@@ -42,7 +42,23 @@ router.get('/panier', (req, res) => {
  * Le body doit contenir l'id de l'article, ainsi que la quantité voulue
  */
 router.post('/panier', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+  const id = parseInt(req.body.id)
+  const qty = parseInt(req.body.qty)
+
+  if(!articles.filter(article => article.id === id).length > 0) {
+    res.status(404).json({message: 'Article doesn\'t exist'})
+  }
+  if(qty <= 0 || !Number.isInteger(qty)) {
+    res.status(400).json({message: 'Quantity must be a positive integer'})
+  }
+  if(req.session.panier.articles.filter(article => article.id === id).length > 0) {
+    res.status(400).json({message: 'Article already added to cart'})
+  }
+  req.session.panier.articles.push({
+    'id': id,
+    'qty': qty
+  })
+  res.status(200).json({message: `${qty}x article n°${id} added to cart`})
 })
 
 /*
@@ -50,7 +66,14 @@ router.post('/panier', (req, res) => {
  * Le panier est ensuite supprimé grâce à req.session.destroy()
  */
 router.post('/panier/pay', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+  const fname = req.body.fname
+  const lname = req.body.lname
+  if(fname === '' || lname === '' || typeof fname !== 'string' || typeof lname !== 'string') {
+    res.status(400).json({ message: 'Invalid details' })
+  }
+  req.session.destroy()
+  res.status(200).json({ message: `Thank you for your purchase ${fname} ${lname}`})
+  
 })
 
 /*
@@ -58,14 +81,31 @@ router.post('/panier/pay', (req, res) => {
  * Le body doit contenir la quantité voulue
  */
 router.put('/panier/:articleId', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+  const id = parseInt(req.params.articleId)
+  const qty = parseInt(req.body.qty)
+
+  if(!req.session.panier.articles.filter(article => article.id === id).length > 0) {
+    res.status(404).json({message: 'Cannot modify quantity of article not added to cart'})
+  }
+  if(!Number.isInteger(qty) || qty <= 0) {
+    res.status(400).json({ message: 'Quantity must be a positive integer' })
+  }
+  req.session.panier.articles[req.session.panier.articles.findIndex(article => { return article.id === id })].qty = qty
+  res.status(200).json({ message: `Quantity of article n°${id} modified to ${qty}`})
+  
+  
 })
 
 /*
  * Cette route doit supprimer un article dans le panier
  */
 router.delete('/panier/:articleId', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+  const id = parseInt(req.params.articleId)
+  if(!req.session.panier.articles.filter(article => article.id === id).length > 0) {
+    res.status(404).json({message: 'Cannot delete article not added to cart'})
+  }
+  req.session.panier.articles.splice(req.session.panier.articles.findIndex(article => { return article.id === id }))
+  res.status(200).json({ message: `Removed article n°${id}`})
 })
 
 
