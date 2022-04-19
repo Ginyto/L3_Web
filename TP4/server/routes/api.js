@@ -34,15 +34,49 @@ router.use((req, res, next) => {
  * Cette route doit retourner le panier de l'utilisateur, grâce à req.session
  */
 router.get('/panier', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+  res.status(200)
+    .json(req.session.panier)
 })
 
 /*
  * Cette route doit ajouter un article au panier, puis retourner le panier modifié à l'utilisateur
  * Le body doit contenir l'id de l'article, ainsi que la quantité voulue
  */
-router.post('/panier', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+router.post('/panier/:articleId/:qte', (req, res) => {
+
+  // res.json({
+  //   message: "bien reçu !!!",
+
+  //   query : req.query,
+
+  //   body: req.body,
+    
+  //   params : req.params
+  // })
+
+  const id = parseInt(req.params.articleId)
+  const qte = parseInt(req.params.qte)
+  const panier = req.session.panier
+
+  if ((id >= 0 && id <= articles.length) && (qte > 0) && (!panier.articles.find(article => article.id === id))) {
+
+    const article = articles.find(article => article.id === id)
+    
+
+    for (let index = 0; index < qte; index++) {
+
+      panier.articles.push(article)
+    }
+
+    res.status(200).json(panier)
+
+  }
+
+  else {
+    res.status(400).json({ message: 'articleId should be a number or u need a quantity > 0' })
+    return
+  }
+    
 })
 
 /*
@@ -50,22 +84,109 @@ router.post('/panier', (req, res) => {
  * Le panier est ensuite supprimé grâce à req.session.destroy()
  */
 router.post('/panier/pay', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+
+  req.session.destroy()
+  
+  res.status(200).json({ message: `merci ${req.query.nom} ${req.query.prenom} pour votre achat`})
+
 })
 
 /*
  * Cette route doit permettre de changer la quantité d'un article dans le panier
  * Le body doit contenir la quantité voulue
  */
-router.put('/panier/:articleId', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+router.put('/panier/:articleId/:qte', (req, res) => {
+
+  // res.json({
+  //   message: "bien reçu !!!",
+
+  //   query : req.query,
+
+  //   body: req.body,
+    
+  //   params : req.params
+  // })
+
+  const id = parseInt(req.params.articleId)
+  const qte = parseInt(req.params.qte)
+  const panier = req.session.panier
+
+  if ((id >= 0 && id <= articles.length) && (qte > 0) && (panier.articles.find(article => article.id === id))) {
+
+    const article = articles.find(article => article.id === id)
+
+    const count = panier.articles.filter(article => article.id === id).length
+
+
+    if (qte > count) {
+
+      for (let index = 0; index < qte - count; index++) {
+
+        panier.articles.push(article)
+      }
+
+    }
+
+    else if (qte < count) {
+        
+      for (let index = 0; index < count - qte; index++) {
+  
+        panier.articles.splice(panier.articles.indexOf(article), 1)
+      }
+  
+    }
+    
+
+    res.status(200).json(panier)
+
+  }
+
+  else {
+    res.status(400).json({ message: 'articleId should be a number or you need a quantity > 0' })
+    return
+  }
+
 })
 
 /*
  * Cette route doit supprimer un article dans le panier
  */
 router.delete('/panier/:articleId', (req, res) => {
-  res.status(501).json({ message: 'Not implemented' })
+  
+    // res.json({
+    //   message: "bien reçu !!!",
+  
+    //   query : req.query,
+  
+    //   body: req.body,
+      
+    //   params : req.params
+    // })
+  
+    const id = parseInt(req.params.articleId)
+    const panier = req.session.panier
+  
+    if ((id >= 0 && id <= articles.length) && (panier.articles.find(article => article.id === id))) {
+  
+      const article = articles.find(article => article.id === id)
+
+      const count = panier.articles.filter(article => article.id === id).length
+
+      for (let index = 0; index < count; index++) {
+  
+        panier.articles.splice(panier.articles.indexOf(article), 1)
+        
+      }
+  
+      res.status(200).json(panier)
+  
+    }
+  
+    else {
+      res.status(400).json({ message: 'articleId should be a number' })
+      return
+    }
+  
 })
 
 

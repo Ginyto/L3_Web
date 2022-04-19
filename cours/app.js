@@ -10,7 +10,7 @@ app.use((req, res, next) => {
 }); // le premier middleware qui enregistre « Requête reçue ! » dans la console et passe l'exécution
 
 app.use((req, res, next) => {
-    res.status(201);
+    res.status(200);
     next();
 }); // le deuxième middleware ajoute un code d'état 201 à la réponse et passe l'exécution
 
