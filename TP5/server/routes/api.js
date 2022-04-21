@@ -1,6 +1,25 @@
 const express = require('express')
 const router = express.Router()
 const articles = require('../data/articles.js')
+const mysql = require('mysql')
+const bcrypt = require('bcrypt')
+const axios = require('axios')
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'gianlucca'
+})
+
+db.connect((err) => {
+  if (err) throw err
+  console.log('Connected to database')
+})
+
+
+
+
+
 
 class Panier {
   constructor () {
