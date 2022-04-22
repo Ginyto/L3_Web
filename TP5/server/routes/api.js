@@ -12,23 +12,21 @@ const db = mysql.createConnection({
   database: 'db_tp5'
 })
 
-
-
-
-function get_table(table, callback) {
-
-  db.connect((err) => {
+//on connecte la variable db à la base de données
+db.connect((err) => {
 
     if (err) throw err
     console.log('\n-----Connected!-----\n')
 
-    db.query(`SELECT * FROM ${table} LIMIT 100`, (err, result) => {
-
-      if (err) throw err
-      return callback(result)
-    })
+})
 
 
+
+function get_table(table, callback) {
+  
+  db.query(`SELECT * FROM ${table} LIMIT 100`, (err, result) => {
+    if (err) throw err
+    return callback(result)
   })
 
 }
@@ -36,7 +34,7 @@ function get_table(table, callback) {
 
 function sql_article(name, description, price, image) {
 
-  console.log("here---------->",name, description, price, image)
+  //console.log("here---------->",name, description, price, image)
 
   if (price > 0) {
     return `INSERT INTO articles(name,description,price,image) VALUES('${name}','${description}',${price},'${image}');`
@@ -48,25 +46,19 @@ function sql_article(name, description, price, image) {
 
 }
 
+
 function add_article(name, description, price, image) {
 
   const sql = sql_article(name, description, price, image)
 
-  console.log("here---------->",sql)
-
-  db.connect((err) => {
+  //console.log("here---------->", sql)
+  
+  db.query(sql, (err, result) => {
 
     if (err) throw err
-    console.log('\n-----Connected!-----\n')
-
-    db.query(sql, (err, result) => {
-
-      if (err) throw err
-      
-    })
-
 
   })
+
 }
 
 
