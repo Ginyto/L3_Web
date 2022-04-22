@@ -8,13 +8,66 @@ const axios = require('axios')
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'gianlucca'
+  password: 'gianlucca',
+  database: 'db_tp5'
 })
 
-db.connect((err) => {
-  if (err) throw err
-  console.log('Connected to database')
-})
+
+
+
+function get_table(table, callback) {
+
+  db.connect((err) => {
+
+    if (err) throw err
+    console.log('\n-----Connected!-----\n')
+
+    db.query(`SELECT * FROM ${table} LIMIT 100`, (err, result) => {
+
+      if (err) throw err
+      return callback(result)
+    })
+
+
+  })
+
+}
+
+
+function sql_article(name, description, price, image) {
+
+  console.log("here---------->",name, description, price, image)
+
+  if (price > 0) {
+    return `INSERT INTO articles(name,description,price,image) VALUES('${name}','${description}',${price},'${image}');`
+  }
+  else {
+    return "error"
+
+  }
+
+}
+
+function add_article(name, description, price, image) {
+
+  const sql = sql_article(name, description, price, image)
+
+  console.log("here---------->",sql)
+
+  db.connect((err) => {
+
+    if (err) throw err
+    console.log('\n-----Connected!-----\n')
+
+    db.query(sql, (err, result) => {
+
+      if (err) throw err
+      
+    })
+
+
+  })
+}
 
 
 
@@ -213,7 +266,10 @@ router.delete('/panier/:articleId', (req, res) => {
  * Cette route envoie l'intégralité des articles du site
  */
 router.get('/articles', (req, res) => {
-  res.json(articles)
+
+  get_table('articles', (data) => { 
+    res.json(data)
+  })
 })
 
 /**
@@ -223,31 +279,12 @@ router.get('/articles', (req, res) => {
  *   Si on voulait persister l'information, on utiliserait une BDD (mysql, etc.)
  */
 router.post('/article', (req, res) => {
-  const name = req.body.name
-  const description = req.body.description
-  const image = req.body.image
-  const price = parseInt(req.body.price)
-
-  // vérification de la validité des données d'entrée
-  if (typeof name !== 'string' || name === '' ||
-      typeof description !== 'string' || description === '' ||
-      typeof image !== 'string' || image === '' ||
-      isNaN(price) || price <= 0) {
-    res.status(400).json({ message: 'bad request' })
-    return
-  }
-
-  const article = {
-    id: articles.length + 1,
-    name: name,
-    description: description,
-    image: image,
-    price: price
-  }
-  articles.push(article)
-  // on envoie l'article ajouté à l'utilisateur
-  res.json(article)
+  add_article(req.body.name, req.body.description, parseInt(req.body.price), req.body.image)
+  res.status(200).json({ message: 'article added' })
 })
+
+
+
 
 /**
  * Cette fonction fait en sorte de valider que l'article demandé par l'utilisateur
