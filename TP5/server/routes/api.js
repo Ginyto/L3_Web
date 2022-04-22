@@ -55,13 +55,15 @@ router.get('/login', (req, res) => {
     console.log("bool---------->", result)
     if (!result) {
       mes = "Wrong username or password"
+      res.json({ Boolean: false })
     }
 
     else {
       mes = "Success"
+      res.status(200).json({ Boolean: true })
     }
 
-    res.status(200).json({ message: mes })
+    
     
   })
   

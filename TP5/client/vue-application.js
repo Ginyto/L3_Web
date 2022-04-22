@@ -1,9 +1,10 @@
 const Home = window.httpVueLoader('./components/Home.vue')
-const AddArticle = window.httpVueLoader('./components/AddArticle.vue')
+const Login = window.httpVueLoader('./components/Login.vue')
 const Panier = window.httpVueLoader('./components/Panier.vue')
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Login },
+  { path: '/home', component: Home },
   { path: '/panier', component: Panier },
 ]
 
@@ -32,6 +33,22 @@ var app = new Vue({
   },
 
   methods: {
+
+    async vuelogin(user, pwd) {
+      const res = await axios.get(`/api/login?user=${user}&pwd=${pwd}`)
+      console.log(res)
+
+      if (res.data.Boolean === false) {
+        console.log('acces denied')
+        alert("Le nom d'utilisateur ou le mot de passe sont incorrectes")
+      }
+
+      if (res.data.Boolean === true) {
+        this.$router.push('/home')
+      }
+
+    },
+
     async addArticle (article) {
       const res = await axios.post('/api/article', article)
       this.articles.push(res.data)
