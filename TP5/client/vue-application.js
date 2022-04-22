@@ -11,7 +11,9 @@ const router = new VueRouter({ routes })
 
 var app = new Vue({
   router,
+
   el: '#app',
+
   data: {
     articles: [],
     panier: {
@@ -19,6 +21,7 @@ var app = new Vue({
       updatedAt: null,
       articles: []
     }
+    
   },
 
   async mounted () {

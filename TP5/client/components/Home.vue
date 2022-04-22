@@ -41,15 +41,14 @@
 
     </article>
 
-    <add-article></add-article>
+    <add-article @add-article = addArticle($event) ></add-article>
 
   </div>
 
 </template>
 
+
 <script>
-
-
 
 module.exports = {
 
@@ -83,8 +82,8 @@ module.exports = {
   },
 
   methods: {
-    addArticle () {
-      this.$emit('add-article', this.newArticle)
+    addArticle (article) {
+      this.$emit('add-article', article)
     },
     deleteArticle (articleId) {
       this.$emit('delete-article', articleId)

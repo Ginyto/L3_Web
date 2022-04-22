@@ -21,6 +21,52 @@ db.connect((err) => {
 })
 
 
+function sql_login(username, password, callback) {
+
+  const sql = `SELECT * FROM users WHERE email = '${username}' AND password = '${password}';`
+
+  db.query(sql, (err, result) => {
+
+    if (err) throw err
+
+    console.log("result---------->", result)
+
+    if (result.length === 0) {
+
+      return callback(false)
+
+    }
+
+    return callback(true)
+
+  })
+
+}
+
+router.get('/login', (req, res) => {
+  const username = req.query.user
+  const password = req.query.pwd
+
+  var mes = ""
+
+  //console.log("here---------->", username, password)
+
+  sql_login(username, password, (result) => {
+    console.log("bool---------->", result)
+    if (!result) {
+      mes = "Wrong username or password"
+    }
+
+    else {
+      mes = "Success"
+    }
+
+    res.status(200).json({ message: mes })
+    
+  })
+  
+})
+
 
 function get_table(table, callback) {
   
@@ -341,5 +387,8 @@ router.route('/article/:articleId')
     articles.splice(index, 1) // remove the article from the array
     res.send()
   })
+
+
+
 
 module.exports = router

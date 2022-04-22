@@ -20,7 +20,7 @@
 <script>
 
 module.exports = {
-  
+
   data () {
     return {
       newArticle: {
